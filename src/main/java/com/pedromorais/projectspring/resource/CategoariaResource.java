@@ -1,30 +1,32 @@
 package com.pedromorais.projectspring.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pedromorais.projectspring.domain.Categoria;
+import com.pedromorais.projectspring.services.CategoriaService;
 
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value = "/categorias")
 public class CategoariaResource {
-	
-	@GetMapping
-	public List<Categoria> listar() {
-		
-		Categoria categoria = new Categoria(1,"Informatica");
-		Categoria categoria2 = new Categoria(2,"Escritorio");
-		
-		List<Categoria> listaCategoria = new ArrayList<>();
-		listaCategoria.add(categoria);
-		listaCategoria.add(categoria2);
-		
-		return listaCategoria;
-		
+
+	@Autowired
+	private CategoriaService categoriaService;
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<?> listar(@PathVariable Integer id) { // @PathVariable informando para o metodo que esse id
+																// virá pela váriavel
+		// ResponseEntity<?> tipo especial do Spring que armazena e encapsula varias
+		// informações de uma resposta http para um serviço REST
+
+		Categoria categoria = categoriaService.retornarCategoriaPorId(id);
+
+		return ResponseEntity.ok().body(categoria);
+
 	}
 
 }
