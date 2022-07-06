@@ -18,6 +18,16 @@ public class CategoariaResource {
 
 	@Autowired
 	private CategoriaService categoriaService;
+	
+	@GetMapping
+	public ResponseEntity<?> retornarCategorias(){
+		//public ResponseEntity<List<Categoria>> retornarCategorias(){
+		
+		List<Categoria> listCategoria = categoriaService.retornarTodaCategoria();
+		
+		return ResponseEntity.ok().body(listCategoria);
+		
+	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> listar(@PathVariable Integer id) { // @PathVariable informando para o metodo que esse id virá pela URL
@@ -30,14 +40,6 @@ public class CategoariaResource {
 
 	}
 	
-	@GetMapping
-	public ResponseEntity<?> retornarCategorias(){
-		//public ResponseEntity<List<Categoria>> retornarCategorias(){
-		
-		List<Categoria> listCategoria = categoriaService.retornarTodaCategoria();
-		
-		return ResponseEntity.ok().body(listCategoria);
-		
-	}
+	
 
 }
