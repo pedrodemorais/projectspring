@@ -1,5 +1,7 @@
 package com.pedromorais.projectspring.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +20,24 @@ public class CategoariaResource {
 	private CategoriaService categoriaService;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> listar(@PathVariable Integer id) { // @PathVariable informando para o metodo que esse id
-																// virá pela váriavel
-		// ResponseEntity<?> tipo especial do Spring que armazena e encapsula varias
-		// informações de uma resposta http para um serviço REST
+	public ResponseEntity<?> listar(@PathVariable Integer id) { // @PathVariable informando para o metodo que esse id virá pela URL
+																// ResponseEntity<?> tipo especial do Spring que armazena e encapsula varias
+																// informações de uma resposta http para um serviço REST
 
 		Categoria categoria = categoriaService.retornarCategoriaPorId(id);
 
 		return ResponseEntity.ok().body(categoria);
 
+	}
+	
+	@GetMapping
+	public ResponseEntity<?> retornarCategorias(){
+		//public ResponseEntity<List<Categoria>> retornarCategorias(){
+		
+		List<Categoria> listCategoria = categoriaService.retornarTodaCategoria();
+		
+		return ResponseEntity.ok().body(listCategoria);
+		
 	}
 
 }

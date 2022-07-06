@@ -1,5 +1,6 @@
 package com.pedromorais.projectspring.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,13 @@ public class CategoriaService {
 		Optional<Categoria> obj = categoriaRepository.findById(id);
 		return obj.orElse(null);
 		
-		
 	}
+	
+	public List<Categoria> retornarTodaCategoria() {
+		return categoriaRepository.findAll();
+	}
+	
+	
 	
 	
 
