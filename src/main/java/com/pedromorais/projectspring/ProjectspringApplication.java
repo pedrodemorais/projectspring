@@ -39,11 +39,13 @@ public class ProjectspringApplication implements CommandLineRunner{
 		cat1.getProdutos().addAll(Arrays.asList(prod1,prod2,prod3));
 		cat2.getProdutos().addAll(Arrays.asList(prod2));
 		
+
 		prod1.getCategorias().addAll(Arrays.asList(cat1));
 		prod2.getCategorias().addAll(Arrays.asList(cat1,cat2));
 		prod3.getCategorias().addAll(Arrays.asList(cat1));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+	
 		produtoRepository.saveAll(Arrays.asList(prod1,prod2,prod3));
 		
 		
