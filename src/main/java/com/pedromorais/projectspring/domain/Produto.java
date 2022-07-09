@@ -25,8 +25,8 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
-	@JsonBackReference
-	@ManyToMany
+	@JsonBackReference// vai omitir a lista de categorias para cada protudo
+	@ManyToMany//muitos para muitos
 	@JoinTable(name="PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name="produto_id"),inverseJoinColumns = @JoinColumn(name="categoria_id"))
 	private List<Categoria> categorias = new ArrayList<>();
 	

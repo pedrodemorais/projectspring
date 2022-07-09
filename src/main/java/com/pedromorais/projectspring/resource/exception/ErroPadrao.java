@@ -2,26 +2,26 @@ package com.pedromorais.projectspring.resource.exception;
 
 import java.io.Serializable;
 
-public class StandardError implements Serializable{
+public class ErroPadrao implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private Integer satatus;
+	private Integer status;
 	private String msg;
 	private Long timeStamp;
 	
-	public StandardError(Integer satatus, String msg, Long timeStamp) {
+	public ErroPadrao(Integer status, String msg, Long timeStamp) {
 		super();
-		this.satatus = satatus;
+		this.status = status;
 		this.msg = msg;
 		this.timeStamp = timeStamp;
 	}
 
-	public Integer getSatatus() {
-		return satatus;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setSatatus(Integer satatus) {
-		this.satatus = satatus;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public String getMsg() {

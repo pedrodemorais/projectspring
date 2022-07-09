@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.pedromorais.projectspring.domain.Categoria;
 import com.pedromorais.projectspring.repositories.CategoriaRepository;
-import com.pedromorais.projectspring.services.exceptions.ObjectNotFoundException;
+import com.pedromorais.projectspring.services.exceptions.ObjetoNaoEncontrado;
 
 @Service
-public class CategoriaService {
+public class CategoriaService {// A classe responsável por fazer a busca no repositório
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -23,9 +23,11 @@ public class CategoriaService {
 	//}
 	
 	public Categoria retornarCategoriaPorId(Integer id) { 
-		 Optional<Categoria> obj = categoriaRepository.findById(id); 
-		return obj.orElseThrow(() -> new ObjectNotFoundException( 
-		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName(), null)); 
+		
+		Optional<Categoria> obj = categoriaRepository.findById(id); 
+		 
+		return obj.orElseThrow(() -> new ObjetoNaoEncontrado(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName(), null)); 
 		} 
 	
 	
